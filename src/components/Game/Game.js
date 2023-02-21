@@ -10,13 +10,25 @@ console.info({answer});
 
 function Game() {
     const [guess, setGuess] = React.useState('');
+    // a guess looks like { word, key }
+    const [guesses, setGuesses] = React.useState([]);
+    function word(word) {
+        return {word, key: crypto.randomUUID()};
+    }
+
     return (
         <>
+            <div className="guess-results">
+                {
+                    guesses.map(({word, key}) => <p key={key} className='guess'>{word}</p>)
+                }
+            </div>
             <form className="guess-input-wrapper"
                   onSubmit={(e) => {
                       e.preventDefault();
-                      setGuess('');
                       console.log({guess});
+                      setGuesses([...guesses, word(guess)]);
+                      setGuess('');
                   }}>
                 <label htmlFor="guess-input">Enter guess:</label>
                 <input
