@@ -1,9 +1,5 @@
 import React from "react";
-import { NUM_OF_LETTERS } from "../../constants";
-
-function newGuess(word) {
-  return { word, key: crypto.randomUUID() };
-}
+import { NUM_OF_GUESSES_ALLOWED, NUM_OF_LETTERS, DEBUG } from "../../constants";
 
 function Input({ guesses, setGuesses }) {
   const [guess, setGuess] = React.useState("");
@@ -13,8 +9,15 @@ function Input({ guesses, setGuesses }) {
       className="guess-input-wrapper"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log({ guess });
-        setGuesses([...guesses, newGuess(guess)]);
+        if (guesses.length < NUM_OF_GUESSES_ALLOWED) {
+          DEBUG && console.log({ guess });
+          setGuesses([...guesses, guess]);
+        } else {
+          DEBUG &&
+            console.log(
+              `NOT adding ${guess}, reached maximum ${NUM_OF_GUESSES_ALLOWED} words`
+            );
+        }
         setGuess("");
       }}
     >
@@ -28,6 +31,7 @@ function Input({ guesses, setGuesses }) {
             e.target.value.match(/^[A-Za-z]+$/) != null &&
             setGuess(e.target.value.toUpperCase());
         }}
+        disabled={guesses.length >= NUM_OF_GUESSES_ALLOWED}
         required={true}
         minLength={5} // oddly unreliable
         maxLength={5}
