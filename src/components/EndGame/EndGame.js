@@ -1,7 +1,7 @@
 import React from "react";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function EndGame({ guesses, answer }) {
+function EndGame({ guesses, answer, resetGame }) {
   let state = "playing";
   const lastGuess = guesses.length > 0 ? guesses[guesses.length - 1] : null;
   if (lastGuess === answer) {
@@ -21,6 +21,10 @@ function EndGame({ guesses, answer }) {
             </strong>
             .
           </p>
+          <br />
+          <button className="button-54" onClick={() => resetGame()}>
+            Play again
+          </button>
         </div>
       )}
       {state === "lost" && (
@@ -28,6 +32,10 @@ function EndGame({ guesses, answer }) {
           <p>
             Sorry, the correct answer is <strong>{answer}</strong>.
           </p>
+          <br />
+          <button className="button-54" onClick={() => resetGame()}>
+            Play again
+          </button>
         </div>
       )}
     </>
