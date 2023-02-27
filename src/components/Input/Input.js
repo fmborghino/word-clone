@@ -28,7 +28,7 @@ function Input({ guesses, setGuesses }) {
         value={guess}
         onChange={(e) => {
           guess.length <= NUM_OF_LETTERS &&
-            e.target.value.match(/^[A-Za-z]+$/) != null &&
+            e.target.value.match(/^[A-Za-z]*$/) != null &&
             setGuess(e.target.value.toUpperCase());
         }}
         disabled={guesses.length >= NUM_OF_GUESSES_ALLOWED}
