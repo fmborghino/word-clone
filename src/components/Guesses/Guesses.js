@@ -13,6 +13,7 @@ function Guesses({ guesses, answer }) {
       </div>
       {DEBUG && (
         <div className="guess-results">
+          <span>{answer}</span>
           {guesses.map((word, index) => (
             <p key={index} className="guess">
               {index} {word}

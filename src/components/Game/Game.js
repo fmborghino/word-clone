@@ -5,11 +5,12 @@ import { WORDS } from "../../data";
 import Guesses from "../Guesses";
 import Input from "../Input";
 import EndGame from "../EndGame";
+import { DEBUG } from "../../constants";
 
 function Game() {
   const [answer, setAnswer] = React.useState(() => {
     const answer = sample(WORDS);
-    console.info({ answer });
+    DEBUG && console.info({ answer });
     return answer;
   });
   const [guesses, setGuesses] = React.useState([]);

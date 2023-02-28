@@ -2,6 +2,14 @@
 
 ## Joy of React, Project I
 
+### Local fork notes
+
+- For of https://github.com/joy-of-react/word-clone
+- Deployed on firebase with `npm run build && firebase deploy`
+- Force reload the browser window
+
+*End of local notes!*
+
 In this project, we'll recreate a popular online word game, Wordle:
 
 ![Demo showing the finished product, our Wordle clone](docs/wordle-demo.gif)
